@@ -25,9 +25,16 @@ RUN apt-get install -y git automake autoconf libtool intltool g++ yasm swig libm
 #RUN npm -g install winston-elasticsearch
 #RUN npm -g install primus --save
 
-RUN mkdir /tmp/mlt-scripts
-RUN git clone https://github.com/mltframework/mlt-scripts.git /tmp/mlt-scripts
-RUN /tmp/mlt-scripts/build/build-melted.sh INSTALL_DIR=/usr/ SOURCE_DIR=/root/
+ENV HOME /root
+RUN cd /root/ ; git clone https://github.com/mltframework/mlt-scripts.git
+
+RUN echo "INSTALL_DIR=\"/usr\"" > /root/build-melted.conf
+RUN echo "SOURCE_DIR=\"/tmp/melted\"" >> /root/build-melted.conf
+RUN echo "AUTO_APPEND_DATE=0" >> /root/build-melted.conf
+RUN echo "CREATE_STARTUP_SCRIPT=0" >> /root/build-melted.conf
+#RUN echo "INSTALL_AS_ROOT=1" >> /root/build-melted.conf
+
+RUN /root/mlt-scripts/build/build-melted.sh -c /root/build-melted.conf
 
 # Remove things for building modules
 #RUN apt-get remove -y manpages manpages-dev g++ gcc cpp make python-software-properties unattended-upgrades ucf g++-4.6 gcc-4.6 cpp-4.6
