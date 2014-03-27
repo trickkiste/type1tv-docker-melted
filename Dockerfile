@@ -20,9 +20,12 @@ RUN apt-get install -y libmp3lame0 libgavl1 libsox1b libexif12 libvdpau1 libqt4-
 # RUN apt-get install -y libqt4-gui
 
 RUN apt-get install -y curl wget dkms linux-headers-`uname -r` linux-headers-generic
-RUN wget --quiet -O /tmp/Blackmagic_Desktop_Video_Linux_10.0.tar.gz http://software.blackmagicdesign.com/DesktopVideo/Blackmagic_Desktop_Video_Linux_10.0.tar.gz
-RUN cd /tmp ; tar xvfz /tmp/Blackmagic_Desktop_Video_Linux_10.0.tar.gz
-RUN dpkg -i /tmp/DesktopVideo_10.0/deb/amd64/desktopvideo_10.0a7_amd64.deb
+#RUN wget --quiet -O /tmp/Blackmagic_Desktop_Video_Linux_10.0.tar.gz http://software.blackmagicdesign.com/DesktopVideo/Blackmagic_Desktop_Video_Linux_10.0.tar.gz
+#RUN cd /tmp ; tar xvfz /tmp/Blackmagic_Desktop_Video_Linux_10.0.tar.gz
+#RUN dpkg -i /tmp/DesktopVideo_10.0/deb/amd64/desktopvideo_10.0a7_amd64.deb
+RUN wget --quiet -O /tmp/Blackmagic_Desktop_Video_Linux_9.8.tar.gz http://software.blackmagicdesign.com/DesktopVideo/Blackmagic_Desktop_Video_Linux_9.8.tar.gz
+RUN cd /tmp ; tar xvfz /tmp/Blackmagic_Desktop_Video_Linux_9.8.tar.gz
+RUN dpkg -i /tmp/desktopvideo-9.8-amd64.deb
 
 # Remove things for building modules
 RUN rm -r /tmp/melted
