@@ -9,6 +9,14 @@ RUN apt-get install -y git automake autoconf libtool intltool g++ yasm swig libm
 ENV HOME /tmp
 RUN cd /tmp/ ; git clone https://github.com/mltframework/mlt-scripts.git
 
+RUN apt-get install -y curl wget dkms linux-headers-`uname -r` linux-headers-generic
+#RUN wget --quiet -O /tmp/Blackmagic_Desktop_Video_Linux_10.0.tar.gz http://software.blackmagicdesign.com/DesktopVideo/Blackmagic_Desktop_Video_Linux_10.0.tar.gz
+#RUN cd /tmp ; tar xvfz /tmp/Blackmagic_Desktop_Video_Linux_10.0.tar.gz
+#RUN dpkg -i /tmp/DesktopVideo_10.0/deb/amd64/desktopvideo_10.0a7_amd64.deb
+RUN wget --quiet -O /tmp/Blackmagic_Desktop_Video_Linux_9.8.tar.gz http://software.blackmagicdesign.com/DesktopVideo/Blackmagic_Desktop_Video_Linux_9.8.tar.gz
+RUN cd /tmp ; tar xvfz /tmp/Blackmagic_Desktop_Video_Linux_9.8.tar.gz
+RUN dpkg -i /tmp/desktopvideo-9.8-amd64.deb
+
 RUN echo "INSTALL_DIR=\"/usr\"" > /tmp/build-melted.conf
 RUN echo "SOURCE_DIR=\"/tmp/melted\"" >> /tmp/build-melted.conf
 RUN echo "AUTO_APPEND_DATE=0" >> /tmp/build-melted.conf
@@ -18,14 +26,6 @@ RUN /tmp/mlt-scripts/build/build-melted.sh -c /tmp/build-melted.conf
 RUN apt-get install -y libmp3lame0 libgavl1 libsox1b libexif12 libvdpau1 libqt4-gui
 # if you need Rugen
 # RUN apt-get install -y libqt4-gui
-
-RUN apt-get install -y curl wget dkms linux-headers-`uname -r` linux-headers-generic
-#RUN wget --quiet -O /tmp/Blackmagic_Desktop_Video_Linux_10.0.tar.gz http://software.blackmagicdesign.com/DesktopVideo/Blackmagic_Desktop_Video_Linux_10.0.tar.gz
-#RUN cd /tmp ; tar xvfz /tmp/Blackmagic_Desktop_Video_Linux_10.0.tar.gz
-#RUN dpkg -i /tmp/DesktopVideo_10.0/deb/amd64/desktopvideo_10.0a7_amd64.deb
-RUN wget --quiet -O /tmp/Blackmagic_Desktop_Video_Linux_9.8.tar.gz http://software.blackmagicdesign.com/DesktopVideo/Blackmagic_Desktop_Video_Linux_9.8.tar.gz
-RUN cd /tmp ; tar xvfz /tmp/Blackmagic_Desktop_Video_Linux_9.8.tar.gz
-RUN dpkg -i /tmp/desktopvideo-9.8-amd64.deb
 
 # Remove things for building modules
 RUN rm -r /tmp/melted
