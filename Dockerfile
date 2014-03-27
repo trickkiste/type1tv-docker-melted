@@ -9,7 +9,7 @@ RUN apt-get install -y git automake autoconf libtool intltool g++ yasm swig libm
 ENV HOME /tmp
 RUN cd /tmp/ ; git clone https://github.com/mltframework/mlt-scripts.git
 
-RUN apt-get install -y curl wget dkms linux-headers-`uname -r` linux-headers-generic
+RUN apt-get install -y curl wget dkms linux-headers-`uname -r` linux-headers-generic libjpeg62
 #RUN wget --quiet -O /tmp/Blackmagic_Desktop_Video_Linux_10.0.tar.gz http://software.blackmagicdesign.com/DesktopVideo/Blackmagic_Desktop_Video_Linux_10.0.tar.gz
 #RUN cd /tmp ; tar xvfz /tmp/Blackmagic_Desktop_Video_Linux_10.0.tar.gz
 #RUN dpkg -i /tmp/DesktopVideo_10.0/deb/amd64/desktopvideo_10.0a7_amd64.deb
