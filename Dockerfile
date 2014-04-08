@@ -43,9 +43,11 @@ WORKDIR /home/default
 
 USER    default
 ENV     HOME /home/default
-ENV	MLT_PROFILE atsc_1080i_50
+# As we want this to be universal, we do not set MLT_PROFILE here, or via the docker run command, but through melted.conf
+# ENV	MLT_PROFILE atsc_1080i_50
 
 EXPOSE 5250
-
-CMD ["-test", "-c", "/etc/melted/melted.conf"]
+# We use -test so melted does not detach from the terminal
+# And we discard all stdout and stderr, so we do not bloat dockers log file and run into trouble that way
+CMD ["-test", "-c", "/etc/melted/melted.conf", ">", "/dev/null", "2>&1"]
 ENTRYPOINT ["melted"]
