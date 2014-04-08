@@ -49,5 +49,10 @@ ENV     HOME /home/default
 EXPOSE 5250
 # We use -test so melted does not detach from the terminal
 # And we discard all stdout and stderr, so we do not bloat dockers log file and run into trouble that way
-CMD ["-test", "-c", "/etc/melted/melted.conf", ">", "/dev/null", "2>&1"]
-ENTRYPOINT ["melted"]
+# Unfortunately it does not work to append these arguments to CMD, so we have to make use of a wrapper script
+RUN echo '#!/bin/sh' >> /tmp/melted-wrapper ; echo 'melted -test "$@" > /dev/null 2>&1' >> /tmp/melted-wrapper 
+RUN mv /tmp/melted-wrapper /usr/local/bin/melted-wrapper 
+RUN chmod +x /usr/local/bin/melted-wrapper
+
+CMD ["-c", "/etc/melted/melted.conf"]
+ENTRYPOINT ["melted-wrapper"]
