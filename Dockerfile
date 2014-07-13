@@ -33,10 +33,16 @@ RUN rm -r /tmp/melted
 RUN rm /tmp/build-melted.conf
 RUN rm -r /tmp/mlt-scripts
 
-RUN apt-get remove -y git automake autoconf libtool intltool g++ libmp3lame-dev libgavl-dev libsamplerate-dev libxml2-dev libjack-dev libsox-dev libsdl-dev libgtk2.0-dev liboil-dev libsoup2.4-dev libqt4-dev libexif-dev libtheora-dev libvdpau-dev libvorbis-dev python-dev
-RUN apt-get remove -y manpages manpages-dev g++ g++-4.6
+RUN apt-get remove -y automake autoconf libtool intltool g++ libmp3lame-dev libgavl-dev libsamplerate-dev libxml2-dev libjack-dev libsox-dev libsdl-dev libgtk2.0-dev liboil-dev libsoup2.4-dev libqt4-dev libexif-dev libtheora-dev libvdpau-dev libvorbis-dev python-dev
+RUN apt-get remove -y manpages manpages-dev g++ g++-4.6 git
 RUN apt-get autoclean -y
 RUN apt-get clean -y
+
+# We use -test so melted does not detach from the terminal
+# And we discard all stdout and stderr, so we do not bloat dockers log file and run into trouble that way
+# Unfortunately it does not work to append these arguments to CMD, so we have to make use of a wrapper script
+ADD https://github.com/trickkiste/docker-stackbrew-melted/raw/master/melted-wrapper /usr/local/bin/
+RUN chmod 755 /usr/local/bin/melted-wrapper
 
 RUN     useradd -m default
 
