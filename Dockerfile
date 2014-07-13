@@ -13,23 +13,23 @@ RUN apt-get update
 RUN apt-get install -y git automake autoconf libtool intltool g++ yasm swig libmp3lame-dev libgavl-dev libsamplerate-dev libxml2-dev ladspa-sdk libjack-dev libsox-dev libsdl-dev libgtk2.0-dev liboil-dev libsoup2.4-dev libqt4-dev libexif-dev libtheora-dev libvdpau-dev libvorbis-dev python-dev
 
 ENV HOME /tmp
-RUN cd /tmp/ ; git clone https://github.com/trickkiste/mlt-scripts.git
+RUN cd /tmp/ ; git clone https://github.com/mltframework/mlt-scripts.git
 
 RUN echo "INSTALL_DIR=\"/usr\"" > /tmp/build-melted.conf
 RUN echo "SOURCE_DIR=\"/tmp/melted\"" >> /tmp/build-melted.conf
-#RUN echo "SOURCES_CLEAN=1" >> /tmp/build-melted.conf
+RUN echo "SOURCES_CLEAN=1" >> /tmp/build-melted.conf
 RUN echo "AUTO_APPEND_DATE=0" >> /tmp/build-melted.conf
 RUN echo "CREATE_STARTUP_SCRIPT=0" >> /tmp/build-melted.conf
 
 RUN /tmp/mlt-scripts/build/build-melted.sh -c /tmp/build-melted.conf
-RUN apt-get install -y libmp3lame0 libgavl1 libsox1b libexif12 libvdpau1 libqt4-gui
+RUN apt-get install -y libmp3lame0 libgavl1 libsox1b libexif12 libvdpau1 #libqt4-gui
 # if you need Rugen
 # RUN apt-get install -y libqt4-gui
 
 # Remove things for building modules
-#RUN rm -r /tmp/melted
-#RUN rm /tmp/build-melted.conf
-#RUN rm -r /tmp/mlt-scripts
+RUN rm -r /tmp/melted
+RUN rm /tmp/build-melted.conf
+RUN rm -r /tmp/mlt-scripts
 
 RUN apt-get remove -y automake autoconf libtool intltool g++ libmp3lame-dev libgavl-dev libsamplerate-dev libxml2-dev libjack-dev libsox-dev libsdl-dev libgtk2.0-dev liboil-dev libsoup2.4-dev libqt4-dev libexif-dev libtheora-dev libvdpau-dev libvorbis-dev python-dev
 RUN apt-get remove -y manpages manpages-dev g++ g++-4.6 git
