@@ -1,4 +1,4 @@
-FROM stackbrew/ubuntu:14.04
+FROM stackbrew/ubuntu:12.04
 MAINTAINER Markus Kienast <mark@trickkiste.at>
 
 ENV DEBIAN_FRONTEND noninteractive
