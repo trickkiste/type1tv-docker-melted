@@ -2,8 +2,8 @@ FROM stackbrew/ubuntu:14.04
 MAINTAINER Markus Kienast <mark@trickkiste.at>
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get install -y curl wget dkms linux-headers-`uname -r` linux-headers-generic libjpeg62
-#RUN apt-get install -y curl wget dkms linux-headers-generic libjpeg62
+#RUN apt-get install -y curl wget dkms linux-headers-`uname -r` linux-headers-generic libjpeg62
+RUN apt-get install -y curl wget dkms linux-headers-generic libjpeg62
 RUN wget --quiet -O /tmp/Blackmagic_Desktop_Video_Linux_10.1.1.tar.gz http://software.blackmagicdesign.com/DesktopVideo/Blackmagic_Desktop_Video_Linux_10.1.1.tar.gz
 RUN cd /tmp ; tar xvfz /tmp/Blackmagic_Desktop_Video_Linux_10.1.1.tar.gz
 RUN dpkg -i /tmp/DesktopVideo_10.1.1/deb/amd64/desktopvideo_10.1.1a26_amd64.deb
