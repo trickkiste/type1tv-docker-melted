@@ -16,6 +16,7 @@ RUN cd /tmp/ ; git clone https://github.com/trickkiste/mlt-scripts.git
 
 RUN echo "INSTALL_DIR=\"/usr\"" > /tmp/build-melted.conf
 RUN echo "SOURCE_DIR=\"/tmp/melted\"" >> /tmp/build-melted.conf
+RUN echo "SOURCES_CLEAN=1" >> /tmp/build-melted.conf
 RUN echo "AUTO_APPEND_DATE=0" >> /tmp/build-melted.conf
 RUN echo "CREATE_STARTUP_SCRIPT=0" >> /tmp/build-melted.conf
 
