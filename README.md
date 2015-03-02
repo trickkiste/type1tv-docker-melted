@@ -15,3 +15,8 @@ Currently using Ubuntu 12.04.
 Example command line to create and run the container the first time:
 sudo docker run -n melted-server -a stdout --privileged -p <OUTSIDE_PORT>:5250 -e MLT_PROFILE=atsc_1080i_50 -v <DIR_WITH_MELTED_CONF>:/etc/melted <CONTAINER_ID>
 
+sudo docker --name melted -i -t -e MLT_PROFILE=atsc_1080i_50 --net=host --privileged --device /dev/blackmagic/dv0 -p 5250:5250 -v /srv/elias/config/melted.conf:/etc/melted/melted.conf -v /srv/elias/assets:/srv/assets -v /etc/blackmagic/BlackmagicPreferences.xml:/etc/blackmagic/BlackmagicPreferences.xml trickkiste/docker-stackbrew-melted-custom
+
+docker run -d -t -i 
+
+docker start
