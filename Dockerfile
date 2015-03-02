@@ -24,6 +24,8 @@ USER    default
 WORKDIR /home/default
 ENV     HOME /home/default
 
+COPY melted.conf /etc/melted/melted.conf
+
 # This is only mentioned here for documentation. 
 # The desired MLT_PROFILE env should be set via "docker run -e MLT_PROFILE=atsc_1080i_50" and/or in melted.conf
 # ENV	MLT_PROFILE atsc_1080i_50
