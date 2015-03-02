@@ -1,3 +1,5 @@
+Deprecated! USE https://bitbucket.org/trickkiste/type1tv-docker-melted
+
 docker-stackbrew-melted
 =======================
 
