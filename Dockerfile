@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /tmp
 
 # Update System
-RUN apt-get update && apt-get -y dist-upgrade && rm -rf /var/lib/apt/lists/* && apt-get autoclean && apt-get clean && apt-get autoremove
+RUN apt-get update && apt-get -y dist-upgrade && apt-get autoclean && apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
 
 # Install libs for Blackmagic driver
 RUN apt-get update && apt-get install -y libjpeg62 libgl1-mesa-glx libxml2 && rm -rf /var/lib/apt/lists/* && apt-get autoclean && apt-get clean && apt-get autoremove
