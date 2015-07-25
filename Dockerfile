@@ -27,11 +27,11 @@ RUN apt-get update && \
     wget --quiet -O /tmp/Blackmagic_Desktop_Video_Linux_10.1.1.tar.gz \
     http://software.blackmagicdesign.com/DesktopVideo/Blackmagic_Desktop_Video_Linux_10.1.1.tar.gz && \
     cd /tmp && tar xvfz /tmp/Blackmagic_Desktop_Video_Linux_10.1.1.tar.gz && \
-    dpkg --ignore-depends -i /tmp/DesktopVideo_10.1.1/deb/amd64/desktopvideo_10.1.1a26_amd64.deb && \
+    dpkg --force-depends -i /tmp/DesktopVideo_10.1.1/deb/amd64/desktopvideo_10.1.1a26_amd64.deb && \
     \
     /tmp/mlt-scripts/build/build-melted.sh -c /tmp/build-melted.conf && \
     \
-    dpkg --ignore-depends -r desktopvideo && \
+    dpkg --force-depends -r desktopvideo && \
     rm -r /tmp/melted && \
     rm /tmp/build-melted.conf && \
     rm -r /tmp/mlt-scripts && \
@@ -42,7 +42,7 @@ RUN apt-get update && \
     libvdpau-dev libvorbis-dev python-dev manpages manpages-dev g++ g++-4.6 git && \
     \
     apt-get -y autoclean && apt-get -y clean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/* && \
-    dpkg --ignore-depends -i /tmp/DesktopVideo_10.1.1/deb/amd64/desktopvideo_10.1.1a26_amd64.deb && \
+    dpkg --force-depends -i /tmp/DesktopVideo_10.1.1/deb/amd64/desktopvideo_10.1.1a26_amd64.deb && \
     rm -rf /tmp
 
 
