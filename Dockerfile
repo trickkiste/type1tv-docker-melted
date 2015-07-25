@@ -10,7 +10,7 @@ RUN apt-get update && apt-get -y dist-upgrade && rm -rf /var/lib/apt/lists/* && 
 RUN apt-get update && apt-get install -y libjpeg62 libgl1-mesa-glx libxml2 && rm -rf /var/lib/apt/lists/* && apt-get autoclean && apt-get clean && apt-get autoremove
 
 # Installing libs for melted
-RUN apt-get update && apt-get install -y libmp3lame0 libgavl1 libsamplerate0 libsoxr-lsr0 libxml2 libjack0 libsox2 libsdl1.2debian libgtk2.0-0 liboil0.3 libsoup2.4-1 libqt4-opengl libqt4-svg libqtgui4 libexif12 libtheora0 libvdpau1 libvorbis0a libvorbisenc2 libvorbisfile3 libxcb-shm0 && rm -rf /var/lib/apt/lists/* && apt-get -y autoclean && apt-get -y clean && apt-get -y autoremove
+RUN apt-get update && apt-get install -y libmp3lame0 libgavl1 libsamplerate0 libsoxr-lsr0 libxml2 libjack0 libsox2 libsdl1.2debian libgtk2.0-0 liboil0.3 libsoup2.4-1 libqt4-opengl libqt4-svg libqtgui4 libexif12 libtheora0 libvdpau1 libvorbis0a libvorbisenc2 libvorbisfile3 libxcb-shm0 && apt-get -y autoclean && apt-get -y clean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
 
 # Generate config file for building melted
 RUN echo "INSTALL_DIR=\"/usr\"" > /tmp/build-melted.conf && echo "SOURCE_DIR=\"/tmp/melted\"" >> /tmp/build-melted.conf && echo "SOURCES_CLEAN=1" >> /tmp/build-melted.conf && echo "AUTO_APPEND_DATE=0" >> /tmp/build-melted.conf && echo "CREATE_STARTUP_SCRIPT=0" >> /tmp/build-melted.conf
