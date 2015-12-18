@@ -44,7 +44,7 @@ sudo docker create --name melted -i -t --net=host --device /dev/blackmagic/dv0 -
 ```
 #!shell
 
-sudo docker create --name melted -i -t --net=host --device /dev/blackmagic/dv0 -p 5250:5250 -e MLT_PROFILE=atsc_1080i_50 /srv/elias/config/melted.conf:/etc/melted/melted.conf -v /srv/elias/assets:/srv/assets -v /etc/blackmagic/BlackmagicPreferences.xml:/etc/blackmagic/BlackmagicPreferences.xml trickkiste/type1tv-docker-melted
+sudo docker create --name melted -i -t --net=host --device /dev/blackmagic/dv0 -p 5250:5250 -e MLT_PROFILE=atsc_1080i_50 -v /srv/elias/config/melted.conf:/etc/melted/melted.conf -v /srv/elias/assets:/srv/assets -v /etc/blackmagic/BlackmagicPreferences.xml:/etc/blackmagic/BlackmagicPreferences.xml trickkiste/type1tv-docker-melted
 ```
 
 
